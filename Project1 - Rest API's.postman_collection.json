@@ -1,0 +1,4740 @@
+{
+	"info": {
+		"_postman_id": "cbbfbf2b-93fd-4b97-b491-6043fbb840da",
+		"name": "Project1 - Rest API's",
+		"description": "Type of APIs: REST APIs\n\n●   Classification of APIs: Public APIs + Secured APIs\n\n●    Documentation format: cURL \\[_cURL is a way of representation of APIs_\\]\n\n●    API documentation URL: [https://gorest.co.in/](https://gorest.co.in/)\n\n●    Authorization format: Bearer Access Token\n\n●    To gain access for Bearer Access token,  \nlogin to the AUT and get your access token\n\n●    This project has 4 REST APIs developed",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36852221",
+		"_collection_link": "https://postman-practice-8467.postman.co/workspace/Project1-REST-APIs~f86f40e5-198c-4464-bb65-22c8a8bfe026/collection/36852221-cbbfbf2b-93fd-4b97-b491-6043fbb840da?action=share&source=collection_link&creator=36852221"
+	},
+	"item": [
+		{
+			"name": "Positive test cases",
+			"item": [
+				{
+					"name": "List User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Status code is 200 OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Veify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify response body is received\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response format is JSON\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id, name, gender, email, status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"});\r",
+									"\r",
+									"//printing capture response attributes\r",
+									"console.log(\"hello to testing world\")\r",
+									"console.log(\"response code in server is \"+pm.response.code);\r",
+									"console.log(\"response status is \"+pm.response.status);\r",
+									"console.log(\"response time is \"+pm.response.responseTime+ \"ms\");\r",
+									"\r",
+									"console.log(\"response size is \");\r",
+									"console.log(pm.response.size());\r",
+									"\r",
+									"console.log(\"resonse body is\")\r",
+									"console.log(pm.response.json())\r",
+									"\r",
+									"console.log(\"response headers is \"+pm.response.headers)\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							}
+						],
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Fixed syntax error and added missing closing parenthesis\r",
+									"pm.test(\"Verify Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response body is received\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify format is Json\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id, name, gender, email, status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Verify gender is male or female\", function () {\r",
+									"    pm.expect(pm.response.json().gender).to.be.oneOf([\"male\", \"female\"]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify gender is male or female\", function () {\r",
+									"    pm.expect(pm.response.json().status).to.be.oneOf([\"active\", \"inactive\"]);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"deepa\",\r\n    \"gender\": \"female\",\r\n    \"email\": \"deepa@gmail.com\",\r\n    \"status\": \"active\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Status code is 200 OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Veify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify response body is received\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response format is JSON\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id, name, gender, email, status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify gender is male or female\", function () {\r",
+									"    pm.expect(pm.response.json().gender).to.be.oneOf([\"male\", \"female\"]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify status is active or inactive\", function () {\r",
+									"    pm.expect(pm.response.json().status).to.be.oneOf([\"active\", \"inactive\"]);\r",
+									"});\r",
+									"\r",
+									"        \r",
+									"pm.test(\"Verify name = Deependra Agarwal roy and email = deependra_agarwalroy@breitenberg.test\", function () { \r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(\"Deependra Agarwal roy\");\r",
+									"     pm.expect(jsonData.email).to.eql(\"deependra_agarwalroy@breitenberg.test\");\r",
+									"});\r",
+									"\r",
+									"//printing capture request attributes\r",
+									"console.log(\"http method used \"+pm.request.method)\r",
+									"console.log(\"API URL \"+pm.request.url)\r",
+									"console.log(\"Request header \"+pm.request.headers)\r",
+									"\r",
+									"console.log(\"Request body is \")\r",
+									"console.log(pm.request.body)\r",
+									"\r",
+									"console.log(\"Request body size is \")\r",
+									"console.log(pm.request.size())\r",
+									"\r",
+									"console.log(\"API name is \"+pm.info.requestName)\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Deependra Agarwal roy\",\r\n    \"email\": \"deependra_agarwalroy@breitenberg.test\",\r\n    \"status\": \"active\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users/7537309",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"7537309"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Status code is 204 No Content\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Veify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify response body is not received\", function () {\r",
+									"    pm.response.to.not.have.body();\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							}
+						],
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users/7545543",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"7545543"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "This folder consist of postive test cases"
+		},
+		{
+			"name": "environment variables",
+			"item": [
+				{
+					"name": "List User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Status code is 200 OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Veify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify response body is received\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response format is JSON\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id, name, gender, email, status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"});\r",
+									"\r",
+									"//printing capture response attributes\r",
+									"console.log(\"hello to testing world\")\r",
+									"console.log(\"response code in server is \"+pm.response.code);\r",
+									"console.log(\"response status is \"+pm.response.status);\r",
+									"console.log(\"response time is \"+pm.response.responseTime+ \"ms\");\r",
+									"\r",
+									"console.log(\"response size is \");\r",
+									"console.log(pm.response.size());\r",
+									"\r",
+									"console.log(\"resonse body is\")\r",
+									"console.log(pm.response.json())\r",
+									"\r",
+									"console.log(\"response headers is \"+pm.response.headers)\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//delete environment variable\r",
+									"pm.environment.unset(\"envnprotocol\");\r",
+									"pm.environment.unset(\"envrurl\");\r",
+									"\r",
+									"//create environment variable\r",
+									"pm.environment.set(\"envnprotocol\", \"https\");\r",
+									"pm.environment.set(\"envrurl\", \"127.0.0.1\");\r",
+									"\r",
+									"//get environment variable\r",
+									"pm.collectionVariables.get(\"cAccesstoken\");\r",
+									"console.log(\"the value of access token is \"+pm.collectionVariables.get(\"cAccesstoken\"));"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							}
+						],
+						"url": {
+							"raw": "{{envnprotocol}}://{{envrurl}}/public/v2/users",
+							"protocol": "{{envnprotocol}}",
+							"host": [
+								"{{envrurl}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Fixed syntax error and added missing closing parenthesis\r",
+									"pm.test(\"Verify Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response body is received\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify format is Json\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id, name, gender, email, status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Verify gender is male or female\", function () {\r",
+									"    pm.expect(pm.response.json().gender).to.be.oneOf([\"male\", \"female\"]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify gender is male or female\", function () {\r",
+									"    pm.expect(pm.response.json().status).to.be.oneOf([\"active\", \"inactive\"]);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"deepa\",\r\n    \"gender\": \"female\",\r\n    \"email\": \"deepa@gmail.com\",\r\n    \"status\": \"active\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Status code is 200 OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Veify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify response body is received\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response format is JSON\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id, name, gender, email, status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify gender is male or female\", function () {\r",
+									"    pm.expect(pm.response.json().gender).to.be.oneOf([\"male\", \"female\"]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify status is active or inactive\", function () {\r",
+									"    pm.expect(pm.response.json().status).to.be.oneOf([\"active\", \"inactive\"]);\r",
+									"});\r",
+									"\r",
+									"        \r",
+									"pm.test(\"Verify name = Deependra Agarwal roy and email = deependra_agarwalroy@breitenberg.test\", function () { \r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(\"Deependra Agarwal roy\");\r",
+									"     pm.expect(jsonData.email).to.eql(\"deependra_agarwalroy@breitenberg.test\");\r",
+									"});\r",
+									"\r",
+									"//printing capture request attributes\r",
+									"console.log(\"http method used \"+pm.request.method)\r",
+									"console.log(\"API URL \"+pm.request.url)\r",
+									"console.log(\"Request header \"+pm.request.headers)\r",
+									"\r",
+									"console.log(\"Request body is \")\r",
+									"console.log(pm.request.body)\r",
+									"\r",
+									"console.log(\"Request body size is \")\r",
+									"console.log(pm.request.size())\r",
+									"\r",
+									"console.log(\"API name is \"+pm.info.requestName)\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Deependra Agarwal roy\",\r\n    \"email\": \"deependra_agarwalroy@breitenberg.test\",\r\n    \"status\": \"active\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users/7537309",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"7537309"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Status code is 204 No Content\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Veify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify response body is not received\", function () {\r",
+									"    pm.response.to.not.have.body();\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							}
+						],
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users/7545543",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"7545543"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "This folder consist of postive test cases"
+		},
+		{
+			"name": "global variable",
+			"item": [
+				{
+					"name": "List User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Status code is 200 OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Veify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify response body is received\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response format is JSON\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id, name, gender, email, status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"});\r",
+									"\r",
+									"//printing capture response attributes\r",
+									"console.log(\"hello to testing world\")\r",
+									"console.log(\"response code in server is \"+pm.response.code);\r",
+									"console.log(\"response status is \"+pm.response.status);\r",
+									"console.log(\"response time is \"+pm.response.responseTime+ \"ms\");\r",
+									"\r",
+									"console.log(\"response size is \");\r",
+									"console.log(pm.response.size());\r",
+									"\r",
+									"console.log(\"resonse body is\")\r",
+									"console.log(pm.response.json())\r",
+									"\r",
+									"console.log(\"response headers is \"+pm.response.headers)\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{gAccesstoken}}"
+							}
+						],
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Fixed syntax error and added missing closing parenthesis\r",
+									"pm.test(\"Verify Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response body is received\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify format is Json\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id, name, gender, email, status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Verify gender is male or female\", function () {\r",
+									"    pm.expect(pm.response.json().gender).to.be.oneOf([\"male\", \"female\"]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify gender is male or female\", function () {\r",
+									"    pm.expect(pm.response.json().status).to.be.oneOf([\"active\", \"inactive\"]);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{gAccesstoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"deepa\",\r\n    \"gender\": \"female\",\r\n    \"email\": \"deepa@gmail.com\",\r\n    \"status\": \"active\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Status code is 200 OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Veify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify response body is received\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response format is JSON\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id, name, gender, email, status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify gender is male or female\", function () {\r",
+									"    pm.expect(pm.response.json().gender).to.be.oneOf([\"male\", \"female\"]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify status is active or inactive\", function () {\r",
+									"    pm.expect(pm.response.json().status).to.be.oneOf([\"active\", \"inactive\"]);\r",
+									"});\r",
+									"\r",
+									"        \r",
+									"pm.test(\"Verify name = Deependra Agarwal roy and email = deependra_agarwalroy@breitenberg.test\", function () { \r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(\"Deependra Agarwal roy\");\r",
+									"     pm.expect(jsonData.email).to.eql(\"deependra_agarwalroy@breitenberg.test\");\r",
+									"});\r",
+									"\r",
+									"//printing capture request attributes\r",
+									"console.log(\"http method used \"+pm.request.method)\r",
+									"console.log(\"API URL \"+pm.request.url)\r",
+									"console.log(\"Request header \"+pm.request.headers)\r",
+									"\r",
+									"console.log(\"Request body is \")\r",
+									"console.log(pm.request.body)\r",
+									"\r",
+									"console.log(\"Request body size is \")\r",
+									"console.log(pm.request.size())\r",
+									"\r",
+									"console.log(\"API name is \"+pm.info.requestName)\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{gAccesstoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Deependra Agarwal roy\",\r\n    \"email\": \"deependra_agarwalroy@breitenberg.test\",\r\n    \"status\": \"active\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users/7537309",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"7537309"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Status code is 204 No Content\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Veify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify response body is not received\", function () {\r",
+									"    pm.response.to.not.have.body();\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{gAccesstoken}}"
+							}
+						],
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users/7545543",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"7545543"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "This folder consist of postive test cases"
+		},
+		{
+			"name": "collections variable",
+			"item": [
+				{
+					"name": "List User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Status code is 200 OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Veify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify response body is received\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response format is JSON\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id, name, gender, email, status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"});\r",
+									"\r",
+									"//printing capture response attributes\r",
+									"console.log(\"hello to testing world\")\r",
+									"console.log(\"response code in server is \"+pm.response.code);\r",
+									"console.log(\"response status is \"+pm.response.status);\r",
+									"console.log(\"response time is \"+pm.response.responseTime+ \"ms\");\r",
+									"\r",
+									"console.log(\"response size is \");\r",
+									"console.log(pm.response.size());\r",
+									"\r",
+									"console.log(\"resonse body is\")\r",
+									"console.log(pm.response.json())\r",
+									"\r",
+									"console.log(\"response headers is \"+pm.response.headers)\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//delete collection variable\r",
+									"pm.collectionVariables.unset(\"cAccesstoken\");\r",
+									"\r",
+									"//create collection variable\r",
+									"pm.collectionVariables.set(\"cAccesstoken\", \"Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82\");\r",
+									"\r",
+									"//get collection variable\r",
+									"pm.collectionVariables.get(\"cAccesstoken\");\r",
+									"console.log(\"the value of access token is \"+pm.collectionVariables.get(\"cAccesstoken\"));\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{cAcesstoken}}"
+							}
+						],
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Fixed syntax error and added missing closing parenthesis\r",
+									"pm.test(\"Verify Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response body is received\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify format is Json\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id, name, gender, email, status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Verify gender is male or female\", function () {\r",
+									"    pm.expect(pm.response.json().gender).to.be.oneOf([\"male\", \"female\"]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify gender is male or female\", function () {\r",
+									"    pm.expect(pm.response.json().status).to.be.oneOf([\"active\", \"inactive\"]);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{cAcesstoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"deepa\",\r\n    \"gender\": \"female\",\r\n    \"email\": \"deepaa@gmail.com\",\r\n    \"status\": \"active\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Status code is 200 OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Veify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify response body is received\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response format is JSON\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id, name, gender, email, status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify gender is male or female\", function () {\r",
+									"    pm.expect(pm.response.json().gender).to.be.oneOf([\"male\", \"female\"]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify status is active or inactive\", function () {\r",
+									"    pm.expect(pm.response.json().status).to.be.oneOf([\"active\", \"inactive\"]);\r",
+									"});\r",
+									"\r",
+									"        \r",
+									"pm.test(\"Verify name = Deependra Agarwal roy and email = deependra_agarwalroy@breitenberg.test\", function () { \r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(\"Deependra Agarwal roy\");\r",
+									"     pm.expect(jsonData.email).to.eql(\"deependra_agarwalroy@breitenberg.test\");\r",
+									"});\r",
+									"\r",
+									"//printing capture request attributes\r",
+									"console.log(\"http method used \"+pm.request.method)\r",
+									"console.log(\"API URL \"+pm.request.url)\r",
+									"console.log(\"Request header \"+pm.request.headers)\r",
+									"\r",
+									"console.log(\"Request body is \")\r",
+									"console.log(pm.request.body)\r",
+									"\r",
+									"console.log(\"Request body size is \")\r",
+									"console.log(pm.request.size())\r",
+									"\r",
+									"console.log(\"API name is \"+pm.info.requestName)\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{cAcesstoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Deependra Agarwal roy\",\r\n    \"email\": \"deependra_agarwalroy@breitenberg.test\",\r\n    \"status\": \"active\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users/7537309",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"7537309"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Status code is 204 No Content\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Veify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify response body is not received\", function () {\r",
+									"    pm.response.to.not.have.body();\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{cAcesstoken}}"
+							}
+						],
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users/7545543",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"7545543"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "This folder consist of postive test cases"
+		},
+		{
+			"name": "DDT-csv",
+			"item": [
+				{
+					"name": "Delete User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Status code is 204 No Content\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Veify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify response body is not received\", function () {\r",
+									"    pm.response.to.not.have.body();\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							}
+						],
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users/{{useridtodelete}}",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"{{useridtodelete}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Status code is 200 OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Veify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify response body is received\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response format is JSON\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id, name, gender, email, status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify gender is male or female\", function () {\r",
+									"    pm.expect(pm.response.json().gender).to.be.oneOf([\"male\", \"female\"]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify status is active or inactive\", function () {\r",
+									"    pm.expect(pm.response.json().status).to.be.oneOf([\"active\", \"inactive\"]);\r",
+									"});\r",
+									"\r",
+									"        \r",
+									"pm.test(\"Verify name = Deependra Agarwal roy and email = deependra_agarwalroy@breitenberg.test\", function () { \r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(\"Deependra Agarwal roy\");\r",
+									"     pm.expect(jsonData.email).to.eql(\"deependra_agarwalroy@breitenberg.test\");\r",
+									"});\r",
+									"\r",
+									"//printing capture request attributes\r",
+									"console.log(\"http method used \"+pm.request.method)\r",
+									"console.log(\"API URL \"+pm.request.url)\r",
+									"console.log(\"Request header \"+pm.request.headers)\r",
+									"\r",
+									"console.log(\"Request body is \")\r",
+									"console.log(pm.request.body)\r",
+									"\r",
+									"console.log(\"Request body size is \")\r",
+									"console.log(pm.request.size())\r",
+									"\r",
+									"console.log(\"API name is \"+pm.info.requestName)\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"{{updatedname}}\",\r\n    \"email\": \"{{updatedemail}}\",\r\n    \"status\": \"{{updatedstatus}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users/{{userid}}",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"{{userid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Fixed syntax error and added missing closing parenthesis\r",
+									"pm.test(\"Verify Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response body is received\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify format is Json\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id, name, gender, email, status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Verify gender is male or female\", function () {\r",
+									"    pm.expect(pm.response.json().gender).to.be.oneOf([\"male\", \"female\"]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify gender is male or female\", function () {\r",
+									"    pm.expect(pm.response.json().status).to.be.oneOf([\"active\", \"inactive\"]);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"{{name}}\",\r\n    \"gender\": \"{{gender}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"status\": \"{{status}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Status code is 200 OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Veify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify response body is received\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response format is JSON\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id, name, gender, email, status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"});\r",
+									"\r",
+									"//printing capture response attributes\r",
+									"console.log(\"hello to testing world\")\r",
+									"console.log(\"response code in server is \"+pm.response.code);\r",
+									"console.log(\"response status is \"+pm.response.status);\r",
+									"console.log(\"response time is \"+pm.response.responseTime+ \"ms\");\r",
+									"\r",
+									"console.log(\"response size is \");\r",
+									"console.log(pm.response.size());\r",
+									"\r",
+									"console.log(\"resonse body is\")\r",
+									"console.log(pm.response.json())\r",
+									"\r",
+									"console.log(\"response headers is \"+pm.response.headers)\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							}
+						],
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "test engineer controls the test data creation process. the data is created in a .csv file"
+		},
+		{
+			"name": "Interoperability testing",
+			"item": [
+				{
+					"name": "List User- window+edge",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Status code is 200 OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Veify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify response body is received\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response format is JSON\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id, name, gender, email, status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"});\r",
+									"\r",
+									"//printing capture response attributes\r",
+									"console.log(\"hello to testing world\")\r",
+									"console.log(\"response code in server is \"+pm.response.code);\r",
+									"console.log(\"response status is \"+pm.response.status);\r",
+									"console.log(\"response time is \"+pm.response.responseTime+ \"ms\");\r",
+									"\r",
+									"console.log(\"response size is \");\r",
+									"console.log(pm.response.size());\r",
+									"\r",
+									"console.log(\"resonse body is\")\r",
+									"console.log(pm.response.json())\r",
+									"\r",
+									"console.log(\"response headers is \"+pm.response.headers)\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.2903.70",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User-linux+firefox",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Fixed syntax error and added missing closing parenthesis\r",
+									"pm.test(\"Verify Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response body is received\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify format is Json\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id, name, gender, email, status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Verify gender is male or female\", function () {\r",
+									"    pm.expect(pm.response.json().gender).to.be.oneOf([\"male\", \"female\"]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify gender is male or female\", function () {\r",
+									"    pm.expect(pm.response.json().status).to.be.oneOf([\"active\", \"inactive\"]);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (X11; Linux i686; rv:132.0) Gecko/20100101 Firefox/132.0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"tej\",\r\n    \"gender\": \"male\",\r\n    \"email\": \"tej@gmail.com\",\r\n    \"status\": \"active\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User - mac+safari",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Status code is 200 OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Veify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify response body is received\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response format is JSON\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id, name, gender, email, status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify gender is male or female\", function () {\r",
+									"    pm.expect(pm.response.json().gender).to.be.oneOf([\"male\", \"female\"]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify status is active or inactive\", function () {\r",
+									"    pm.expect(pm.response.json().status).to.be.oneOf([\"active\", \"inactive\"]);\r",
+									"});\r",
+									"\r",
+									"        \r",
+									"/*pm.test(\"Verify name = Rock and email = Rocky1@gmal.com\", function () { //12th section\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(\"Rock\");\r",
+									"     pm.expect(jsonData.email).to.eql(\"Rocky1@gmal.com\");\r",
+									"}); */\r",
+									"\r",
+									"//printing capture request attributes\r",
+									"console.log(\"http method used \"+pm.request.method)\r",
+									"console.log(\"API URL \"+pm.request.url)\r",
+									"console.log(\"Request header \"+pm.request.headers)\r",
+									"\r",
+									"console.log(\"Request body is \")\r",
+									"console.log(pm.request.body)\r",
+									"\r",
+									"console.log(\"Request body size is \")\r",
+									"console.log(pm.request.size())\r",
+									"\r",
+									"console.log(\"API name is \"+pm.info.requestName)\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_7_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4.1 Safari/605.1.15",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Adhrit\",\r\n    \"email\": \"Adhrit@gmail.com\",\r\n    \"status\": \"active\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users/7545540",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"7545540"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User-andriod + chrome",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Status code is 204 No Content\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Veify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify response body is not received\", function () {\r",
+									"    pm.response.to.not.have.body();\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.6778.81 Mobile Safari/537.36",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users/7545541",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"7545541"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Conducted to verify if APIs respond on various browsers, OS. this is done by simulating the User-agent request header in postman tool."
+		},
+		{
+			"name": "Fuzz DDT-Interoperability testing Copy",
+			"item": [
+				{
+					"name": "List User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Status code is 200 OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Veify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify response body is received\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response format is JSON\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id, name, gender, email, status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"});\r",
+									"\r",
+									"//printing capture response attributes\r",
+									"console.log(\"hello to testing world\")\r",
+									"console.log(\"response code in server is \"+pm.response.code);\r",
+									"console.log(\"response status is \"+pm.response.status);\r",
+									"console.log(\"response time is \"+pm.response.responseTime+ \"ms\");\r",
+									"\r",
+									"console.log(\"response size is \");\r",
+									"console.log(pm.response.size());\r",
+									"\r",
+									"console.log(\"resonse body is\")\r",
+									"console.log(pm.response.json())\r",
+									"\r",
+									"console.log(\"response headers is \"+pm.response.headers)\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							},
+							{
+								"key": "User-Agent",
+								"value": "{{$randomUserAgent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Fixed syntax error and added missing closing parenthesis\r",
+									"pm.test(\"Verify Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response body is received\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify format is Json\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id, name, gender, email, status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Verify gender is male or female\", function () {\r",
+									"    pm.expect(pm.response.json().gender).to.be.oneOf([\"male\", \"female\"]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify gender is male or female\", function () {\r",
+									"    pm.expect(pm.response.json().status).to.be.oneOf([\"active\", \"inactive\"]);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							},
+							{
+								"key": "User-Agent",
+								"value": "{{$randomUserAgent}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"{{$randomNamePrefix}} {{$randomFirstName}}\",\r\n    \"gender\": \"female\",\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"status\": \"active\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Status code is 200 OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Veify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify response body is received\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response format is JSON\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id, name, gender, email, status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify gender is male or female\", function () {\r",
+									"    pm.expect(pm.response.json().gender).to.be.oneOf([\"male\", \"female\"]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify status is active or inactive\", function () {\r",
+									"    pm.expect(pm.response.json().status).to.be.oneOf([\"active\", \"inactive\"]);\r",
+									"});\r",
+									"\r",
+									"       \r",
+									"/*pm.test.skip(\"Verify name = Rock and email = Rocky@gmal.com\", function () { //12th section\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(\"Rock\");\r",
+									"     pm.expect(jsonData.email).to.eql(\"Rocky@gmal.com\");\r",
+									"});*/\r",
+									"\r",
+									"\r",
+									"//printing capture request attributes\r",
+									"console.log(\"http method used \"+pm.request.method)\r",
+									"console.log(\"API URL \"+pm.request.url)\r",
+									"console.log(\"Request header \"+pm.request.headers)\r",
+									"\r",
+									"console.log(\"Request body is \")\r",
+									"console.log(pm.request.body)\r",
+									"\r",
+									"console.log(\"Request body size is \")\r",
+									"console.log(pm.request.size())\r",
+									"\r",
+									"console.log(\"API name is \"+pm.info.requestName)\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							},
+							{
+								"key": "User-Agent",
+								"value": "{{$randomUserAgent}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"{{$randomNameSuffix}} {{$randomFullName}}\",\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"status\": \"active\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users/7543058",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"7543058"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Status code is 204 No Content\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Veify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify response body is not received\", function () {\r",
+									"    pm.response.to.not.have.body();\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							},
+							{
+								"key": "User-Agent",
+								"value": "{{$randomUserAgent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users/7543078",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"7543078"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "we use postman built-in function to generate random data"
+		},
+		{
+			"name": "API chaining",
+			"item": [
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Fixed syntax error and added missing closing parenthesis\r",
+									"pm.test(\"Verify Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response body is received\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify format is Json\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id, name, gender, email, status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Verify gender is male or female\", function () {\r",
+									"    pm.expect(pm.response.json().gender).to.be.oneOf([\"male\", \"female\"]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify gender is male or female\", function () {\r",
+									"    pm.expect(pm.response.json().status).to.be.oneOf([\"active\", \"inactive\"]);\r",
+									"});\r",
+									"\r",
+									"//API chaining\r",
+									"var jsonBody = pm.response.json()\r",
+									"var extractedID = jsonBody.id;\r",
+									"var extractedname = jsonBody.name;\r",
+									"var extractemail = jsonBody.email;\r",
+									"\r",
+									"pm.globals.set(\"globalID\", extractedID);\r",
+									"pm.globals.set(\"globalName\", extractedname);\r",
+									"pm.globals.set(\"globalemail\", extractemail);\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							},
+							{
+								"key": "User-Agent",
+								"value": "{{$randomUserAgent}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"{{$randomFirstName}}\",\r\n    \"gender\": \"female\",\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"status\": \"active\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Status code is 200 OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Veify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify response body is received\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response format is JSON\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id, name, gender, email, status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify gender is male or female\", function () {\r",
+									"    pm.expect(pm.response.json().gender).to.be.oneOf([\"male\", \"female\"]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify status is active or inactive\", function () {\r",
+									"    pm.expect(pm.response.json().status).to.be.oneOf([\"active\", \"inactive\"]);\r",
+									"});\r",
+									"\r",
+									"       \r",
+									"/*pm.test.skip(\"Verify name = Rock and email = Rocky@gmal.com\", function () { //12th section\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(\"Rock\");\r",
+									"     pm.expect(jsonData.email).to.eql(\"Rocky@gmal.com\");\r",
+									"});*/\r",
+									"\r",
+									"\r",
+									"//printing capture request attributes\r",
+									"console.log(\"http method used \"+pm.request.method)\r",
+									"console.log(\"API URL \"+pm.request.url)\r",
+									"console.log(\"Request header \"+pm.request.headers)\r",
+									"\r",
+									"console.log(\"Request body is \")\r",
+									"console.log(pm.request.body)\r",
+									"\r",
+									"console.log(\"Request body size is \")\r",
+									"console.log(pm.request.size())\r",
+									"\r",
+									"console.log(\"API name is \"+pm.info.requestName)\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							},
+							{
+								"key": "User-Agent",
+								"value": "{{$randomUserAgent}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"{{$randomNameSuffix}} {{globalName}}\",\r\n    \"email\": \"{{globalemail}}\",\r\n    \"status\": \"active\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users/{{globalID}}",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"{{globalID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Status code is 204 No Content\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Veify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify response body is not received\", function () {\r",
+									"    pm.response.to.not.have.body();\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							},
+							{
+								"key": "User-Agent",
+								"value": "{{$randomUserAgent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users/{{globalID}}",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"{{globalID}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "response of API becomes request for another dependent API"
+		},
+		{
+			"name": "E2E api automation",
+			"item": [
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Fixed syntax error and added missing closing parenthesis\r",
+									"pm.test(\"Verify Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response body is received\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify format is Json\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id, name, gender, email, status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Verify gender is male or female\", function () {\r",
+									"    pm.expect(pm.response.json().gender).to.be.oneOf([\"male\", \"female\"]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify gender is male or female\", function () {\r",
+									"    pm.expect(pm.response.json().status).to.be.oneOf([\"active\", \"inactive\"]);\r",
+									"});\r",
+									"\r",
+									"//API chaining\r",
+									"var jsonBody = pm.response.json()\r",
+									"var extractedID = jsonBody.id;\r",
+									"var extractedname = jsonBody.name;\r",
+									"var extractemail = jsonBody.email;\r",
+									"\r",
+									"pm.globals.set(\"globalID\", extractedID);\r",
+									"pm.globals.set(\"globalName\", extractedname);\r",
+									"pm.globals.set(\"globalemail\", extractemail);\r",
+									"\r",
+									"//contiditions statement and postman workflow\r",
+									"if(pm.response.code==201){\r",
+									"    console.log(\"this api \"+pm.info.requestName+\" is pass\");\r",
+									"    pm.execution.setNextRequest(\"verify if user is created\")\r",
+									"}else {\r",
+									"    console.log(\"this api \"+pm.info.requestName+\" is failed\");\r",
+									"    pm.execution.setNextRequest()\r",
+									"} \r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							},
+							{
+								"key": "User-Agent",
+								"value": "{{$randomUserAgent}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"{{$randomFirstName}}\",\r\n    \"gender\": \"female\",\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"status\": \"active\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verify if user is created",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Status code is 200 OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Veify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify response body is received\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response format is JSON\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id, name, gender, email, status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"});\r",
+									"\r",
+									"//verify if user user is cretaed\r",
+									"\r",
+									"pm.test(\"verify if user is created with id = \"+pm.globals.get(\"globalID\"), function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0].id).to.eql(pm.globals.get(\"globalID\"));\r",
+									"});\r",
+									"\r",
+									"//contiditions statement and postman workflow\r",
+									"if(pm.response.code==200){\r",
+									"    console.log(\"this api \"+pm.info.requestName+\" is pass\");\r",
+									"    pm.execution.setNextRequest(\"Update this cretaed User\")\r",
+									"}else {\r",
+									"    console.log(\"this api \"+pm.info.requestName+\" is failed\");\r",
+									"    pm.execution.setNextRequest()\r",
+									"} \r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"//printing capture response attributes\r",
+									"console.log(\"hello to testing world\")\r",
+									"console.log(\"response code in server is \"+pm.response.code);\r",
+									"console.log(\"response status is \"+pm.response.status);\r",
+									"console.log(\"response time is \"+pm.response.responseTime+ \"ms\");\r",
+									"\r",
+									"console.log(\"response size is \");\r",
+									"console.log(pm.response.size());\r",
+									"\r",
+									"console.log(\"resonse body is\")\r",
+									"console.log(pm.response.json())\r",
+									"\r",
+									"console.log(\"response headers is \"+pm.response.headers)\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							}
+						],
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update this cretaed User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Status code is 200 OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Veify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify response body is received\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response format is JSON\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id, name, gender, email, status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify gender is male or female\", function () {\r",
+									"    pm.expect(pm.response.json().gender).to.be.oneOf([\"male\", \"female\"]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify status is active or inactive\", function () {\r",
+									"    pm.expect(pm.response.json().status).to.be.oneOf([\"active\", \"inactive\"]);\r",
+									"});\r",
+									"\r",
+									"//API chaining\r",
+									"var jsonBody = pm.response.json()\r",
+									"var extractedupdatedname = jsonBody.name;\r",
+									"pm.globals.set(\"globalupdatedName\", extractedupdatedname);\r",
+									"\r",
+									"//verify if created user is updated\r",
+									"pm.test(\"verify if created user is updated = \"+pm.globals.get(\"globalupdatedName\"), function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(pm.globals.get(\"globalupdatedName\"));\r",
+									"});\r",
+									"\r",
+									"//contiditions statement and postman workflow\r",
+									"if(pm.response.code==200){\r",
+									"    console.log(\"this api \"+pm.info.requestName+\" is pass\");\r",
+									"    pm.execution.setNextRequest(\"verify if created user is updated\")\r",
+									"}else {\r",
+									"    console.log(\"this api \"+pm.info.requestName+\" is failed\");\r",
+									"    pm.execution.setNextRequest()\r",
+									"}\r",
+									"       \r",
+									"/*pm.test.skip(\"Verify name = Rock and email = Rocky@gmal.com\", function () { //12th section\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(\"Rock\");\r",
+									"     pm.expect(jsonData.email).to.eql(\"Rocky@gmal.com\");\r",
+									"});*/\r",
+									"\r",
+									"\r",
+									"//printing capture request attributes\r",
+									"console.log(\"http method used \"+pm.request.method)\r",
+									"console.log(\"API URL \"+pm.request.url)\r",
+									"console.log(\"Request header \"+pm.request.headers)\r",
+									"\r",
+									"console.log(\"Request body is \")\r",
+									"console.log(pm.request.body)\r",
+									"\r",
+									"console.log(\"Request body size is \")\r",
+									"console.log(pm.request.size())\r",
+									"\r",
+									"console.log(\"API name is \"+pm.info.requestName)\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							},
+							{
+								"key": "User-Agent",
+								"value": "{{$randomUserAgent}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"{{$randomNameSuffix}} {{globalName}}\",\r\n    \"email\": \"{{globalemail}}\",\r\n    \"status\": \"active\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users/{{globalID}}",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"{{globalID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verify if created user is updated",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Status code is 200 OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Veify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify response body is received\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response format is JSON\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id, name, gender, email, status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"});\r",
+									"\r",
+									"//verify if created user is updated\r",
+									"pm.test(\"verify if created user is updated with name = \"+pm.globals.get(\"globalupdatedName\"), function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0].name).to.eql(pm.globals.get(\"globalupdatedName\"));\r",
+									"});\r",
+									"\r",
+									"//contiditions statement and postman workflow\r",
+									"if(pm.response.code==200){\r",
+									"    console.log(\"this api \"+pm.info.requestName+\" is pass\");\r",
+									"    pm.execution.setNextRequest(\"Delete the created User\")\r",
+									"}else {\r",
+									"    console.log(\"this api \"+pm.info.requestName+\" is failed\");\r",
+									"    pm.execution.setNextRequest()\r",
+									"}\r",
+									"\r",
+									"//printing capture response attributes\r",
+									"console.log(\"hello to testing world\")\r",
+									"console.log(\"response code in server is \"+pm.response.code);\r",
+									"console.log(\"response status is \"+pm.response.status);\r",
+									"console.log(\"response time is \"+pm.response.responseTime+ \"ms\");\r",
+									"\r",
+									"console.log(\"response size is \");\r",
+									"console.log(pm.response.size());\r",
+									"\r",
+									"console.log(\"resonse body is\")\r",
+									"console.log(pm.response.json())\r",
+									"\r",
+									"console.log(\"response headers is \"+pm.response.headers)\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							}
+						],
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete the created User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Status code is 204 No Content\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Veify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify response body is not received\", function () {\r",
+									"    pm.response.to.not.have.body();\r",
+									"});\r",
+									"\r",
+									"//contiditions statement and postman workflow\r",
+									"if(pm.response.code==204){\r",
+									"    console.log(\"this api \"+pm.info.requestName+\" is pass\");\r",
+									"    pm.execution.setNextRequest(\"verify created user is deleted\")\r",
+									"}else {\r",
+									"    console.log(\"this api \"+pm.info.requestName+\" is failed\");\r",
+									"    pm.execution.setNextRequest()\r",
+									"}\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							},
+							{
+								"key": "User-Agent",
+								"value": "{{$randomUserAgent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users/{{globalID}}",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"{{globalID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verify created user is deleted",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Status code is 200 OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Veify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify response body is received\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response format is JSON\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id, name, gender, email, status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"});\r",
+									"\r",
+									"//verify if created user deleted\r",
+									"pm.test(\"verify if created user deleted \"+pm.globals.get(\"globalID\"), function () {\r",
+									"    pm.expect(pm.response.text()).to.not.include(+pm.globals.get(\"globalID\"));\r",
+									"});\r",
+									"\r",
+									"//contiditions statement and postman workflow\r",
+									"if(pm.response.code==200){\r",
+									"    console.log(\"this api \"+pm.info.requestName+\" is pass\");\r",
+									"    pm.execution.setNextRequest(\"\")\r",
+									"}else {\r",
+									"    console.log(\"this api \"+pm.info.requestName+\" is failed\");\r",
+									"    pm.execution.setNextRequest()\r",
+									"}\r",
+									"\r",
+									"//printing capture response attributes\r",
+									"console.log(\"hello to testing world\")\r",
+									"console.log(\"response code in server is \"+pm.response.code);\r",
+									"console.log(\"response status is \"+pm.response.status);\r",
+									"console.log(\"response time is \"+pm.response.responseTime+ \"ms\");\r",
+									"\r",
+									"console.log(\"response size is \");\r",
+									"console.log(pm.response.size());\r",
+									"\r",
+									"console.log(\"resonse body is\")\r",
+									"console.log(pm.response.json())\r",
+									"\r",
+									"console.log(\"response headers is \"+pm.response.headers)\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							}
+						],
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "E2E api automation - performance test",
+			"item": [
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Fixed syntax error and added missing closing parenthesis\r",
+									"pm.test(\"Verify Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response body is received\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify format is Json\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id, name, gender, email, status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Verify gender is male or female\", function () {\r",
+									"    pm.expect(pm.response.json().gender).to.be.oneOf([\"male\", \"female\"]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify gender is male or female\", function () {\r",
+									"    pm.expect(pm.response.json().status).to.be.oneOf([\"active\", \"inactive\"]);\r",
+									"});\r",
+									"\r",
+									"//API chaining\r",
+									"var jsonBody = pm.response.json()\r",
+									"var extractedID = jsonBody.id;\r",
+									"var extractedname = jsonBody.name;\r",
+									"var extractemail = jsonBody.email;\r",
+									"\r",
+									"pm.globals.set(\"globalID\", extractedID);\r",
+									"pm.globals.set(\"globalName\", extractedname);\r",
+									"pm.globals.set(\"globalemail\", extractemail);\r",
+									"\r",
+									"//contiditions statement and postman workflow\r",
+									"if(pm.response.code==201){\r",
+									"    console.log(\"this api \"+pm.info.requestName+\" is pass\");\r",
+									"    pm.execution.setNextRequest(\"verify if user is created\")\r",
+									"}else {\r",
+									"    console.log(\"this api \"+pm.info.requestName+\" is failed\");\r",
+									"    pm.execution.setNextRequest()\r",
+									"} \r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							},
+							{
+								"key": "User-Agent",
+								"value": "{{$randomUserAgent}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"{{$randomFirstName}}\",\r\n    \"gender\": \"female\",\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"status\": \"active\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verify if user is created",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Status code is 200 OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Veify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify response body is received\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response format is JSON\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id, name, gender, email, status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"});\r",
+									"\r",
+									"//verify if user user is cretaed\r",
+									"\r",
+									"pm.test(\"verify if user is created with id = \"+pm.globals.get(\"globalID\"), function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0].id).to.eql(pm.globals.get(\"globalID\"));\r",
+									"});\r",
+									"\r",
+									"//contiditions statement and postman workflow\r",
+									"if(pm.response.code==200){\r",
+									"    console.log(\"this api \"+pm.info.requestName+\" is pass\");\r",
+									"    pm.execution.setNextRequest(\"Update this cretaed User\")\r",
+									"}else {\r",
+									"    console.log(\"this api \"+pm.info.requestName+\" is failed\");\r",
+									"    pm.execution.setNextRequest()\r",
+									"} \r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"//printing capture response attributes\r",
+									"console.log(\"hello to testing world\")\r",
+									"console.log(\"response code in server is \"+pm.response.code);\r",
+									"console.log(\"response status is \"+pm.response.status);\r",
+									"console.log(\"response time is \"+pm.response.responseTime+ \"ms\");\r",
+									"\r",
+									"console.log(\"response size is \");\r",
+									"console.log(pm.response.size());\r",
+									"\r",
+									"console.log(\"resonse body is\")\r",
+									"console.log(pm.response.json())\r",
+									"\r",
+									"console.log(\"response headers is \"+pm.response.headers)\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							}
+						],
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update this cretaed User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Status code is 200 OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Veify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify response body is received\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response format is JSON\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id, name, gender, email, status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify gender is male or female\", function () {\r",
+									"    pm.expect(pm.response.json().gender).to.be.oneOf([\"male\", \"female\"]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify status is active or inactive\", function () {\r",
+									"    pm.expect(pm.response.json().status).to.be.oneOf([\"active\", \"inactive\"]);\r",
+									"});\r",
+									"\r",
+									"//API chaining\r",
+									"var jsonBody = pm.response.json()\r",
+									"var extractedupdatedname = jsonBody.name;\r",
+									"pm.globals.set(\"globalupdatedName\", extractedupdatedname);\r",
+									"\r",
+									"//verify if created user is updated\r",
+									"pm.test(\"verify if created user is updated = \"+pm.globals.get(\"globalupdatedName\"), function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(pm.globals.get(\"globalupdatedName\"));\r",
+									"});\r",
+									"\r",
+									"//contiditions statement and postman workflow\r",
+									"if(pm.response.code==200){\r",
+									"    console.log(\"this api \"+pm.info.requestName+\" is pass\");\r",
+									"    pm.execution.setNextRequest(\"verify if created user is updated\")\r",
+									"}else {\r",
+									"    console.log(\"this api \"+pm.info.requestName+\" is failed\");\r",
+									"    pm.execution.setNextRequest()\r",
+									"}\r",
+									"       \r",
+									"/*pm.test.skip(\"Verify name = Rock and email = Rocky@gmal.com\", function () { //12th section\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(\"Rock\");\r",
+									"     pm.expect(jsonData.email).to.eql(\"Rocky@gmal.com\");\r",
+									"});*/\r",
+									"\r",
+									"\r",
+									"//printing capture request attributes\r",
+									"console.log(\"http method used \"+pm.request.method)\r",
+									"console.log(\"API URL \"+pm.request.url)\r",
+									"console.log(\"Request header \"+pm.request.headers)\r",
+									"\r",
+									"console.log(\"Request body is \")\r",
+									"console.log(pm.request.body)\r",
+									"\r",
+									"console.log(\"Request body size is \")\r",
+									"console.log(pm.request.size())\r",
+									"\r",
+									"console.log(\"API name is \"+pm.info.requestName)\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							},
+							{
+								"key": "User-Agent",
+								"value": "{{$randomUserAgent}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"{{$randomNameSuffix}} {{globalName}}\",\r\n    \"email\": \"{{globalemail}}\",\r\n    \"status\": \"active\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users/{{globalID}}",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"{{globalID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verify if created user is updated",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Status code is 200 OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Veify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify response body is received\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response format is JSON\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id, name, gender, email, status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"});\r",
+									"\r",
+									"//verify if created user is updated\r",
+									"pm.test(\"verify if created user is updated with name = \"+pm.globals.get(\"globalupdatedName\"), function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0].name).to.eql(pm.globals.get(\"globalupdatedName\"));\r",
+									"});\r",
+									"\r",
+									"//contiditions statement and postman workflow\r",
+									"if(pm.response.code==200){\r",
+									"    console.log(\"this api \"+pm.info.requestName+\" is pass\");\r",
+									"    pm.execution.setNextRequest(\"Delete the created User\")\r",
+									"}else {\r",
+									"    console.log(\"this api \"+pm.info.requestName+\" is failed\");\r",
+									"    pm.execution.setNextRequest()\r",
+									"}\r",
+									"\r",
+									"//printing capture response attributes\r",
+									"console.log(\"hello to testing world\")\r",
+									"console.log(\"response code in server is \"+pm.response.code);\r",
+									"console.log(\"response status is \"+pm.response.status);\r",
+									"console.log(\"response time is \"+pm.response.responseTime+ \"ms\");\r",
+									"\r",
+									"console.log(\"response size is \");\r",
+									"console.log(pm.response.size());\r",
+									"\r",
+									"console.log(\"resonse body is\")\r",
+									"console.log(pm.response.json())\r",
+									"\r",
+									"console.log(\"response headers is \"+pm.response.headers)\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							}
+						],
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete the created User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Status code is 204 No Content\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Veify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify response body is not received\", function () {\r",
+									"    pm.response.to.not.have.body();\r",
+									"});\r",
+									"\r",
+									"//contiditions statement and postman workflow\r",
+									"if(pm.response.code==204){\r",
+									"    console.log(\"this api \"+pm.info.requestName+\" is pass\");\r",
+									"    pm.execution.setNextRequest(\"verify created user is deleted\")\r",
+									"}else {\r",
+									"    console.log(\"this api \"+pm.info.requestName+\" is failed\");\r",
+									"    pm.execution.setNextRequest()\r",
+									"}\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							},
+							{
+								"key": "User-Agent",
+								"value": "{{$randomUserAgent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users/{{globalID}}",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"{{globalID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verify created user is deleted",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Status code is 200 OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Veify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify response body is received\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response format is JSON\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id, name, gender, email, status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"});\r",
+									"\r",
+									"//verify if created user deleted\r",
+									"pm.test(\"verify if created user deleted \"+pm.globals.get(\"globalID\"), function () {\r",
+									"    pm.expect(pm.response.text()).to.not.include(+pm.globals.get(\"globalID\"));\r",
+									"});\r",
+									"\r",
+									"//contiditions statement and postman workflow\r",
+									"if(pm.response.code==200){\r",
+									"    console.log(\"this api \"+pm.info.requestName+\" is pass\");\r",
+									"    pm.execution.setNextRequest(\"\")\r",
+									"}else {\r",
+									"    console.log(\"this api \"+pm.info.requestName+\" is failed\");\r",
+									"    pm.execution.setNextRequest()\r",
+									"}\r",
+									"\r",
+									"//printing capture response attributes\r",
+									"console.log(\"hello to testing world\")\r",
+									"console.log(\"response code in server is \"+pm.response.code);\r",
+									"console.log(\"response status is \"+pm.response.status);\r",
+									"console.log(\"response time is \"+pm.response.responseTime+ \"ms\");\r",
+									"\r",
+									"console.log(\"response size is \");\r",
+									"console.log(pm.response.size());\r",
+									"\r",
+									"console.log(\"resonse body is\")\r",
+									"console.log(pm.response.json())\r",
+									"\r",
+									"console.log(\"response headers is \"+pm.response.headers)\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							}
+						],
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "API chaining - performance test",
+			"item": [
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Fixed syntax error and added missing closing parenthesis\r",
+									"pm.test(\"Verify Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response body is received\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify format is Json\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id, name, gender, email, status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Verify gender is male or female\", function () {\r",
+									"    pm.expect(pm.response.json().gender).to.be.oneOf([\"male\", \"female\"]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify gender is male or female\", function () {\r",
+									"    pm.expect(pm.response.json().status).to.be.oneOf([\"active\", \"inactive\"]);\r",
+									"});\r",
+									"\r",
+									"//API chaining\r",
+									"var jsonBody = pm.response.json()\r",
+									"var extractedID = jsonBody.id;\r",
+									"var extractedname = jsonBody.name;\r",
+									"var extractemail = jsonBody.email;\r",
+									"\r",
+									"pm.globals.set(\"globalID\", extractedID);\r",
+									"pm.globals.set(\"globalName\", extractedname);\r",
+									"pm.globals.set(\"globalemail\", extractemail);\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							},
+							{
+								"key": "User-Agent",
+								"value": "{{$randomUserAgent}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"{{$randomFirstName}}\",\r\n    \"gender\": \"female\",\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"status\": \"active\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Status code is 200 OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Veify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify response body is received\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response format is JSON\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id, name, gender, email, status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify gender is male or female\", function () {\r",
+									"    pm.expect(pm.response.json().gender).to.be.oneOf([\"male\", \"female\"]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify status is active or inactive\", function () {\r",
+									"    pm.expect(pm.response.json().status).to.be.oneOf([\"active\", \"inactive\"]);\r",
+									"});\r",
+									"\r",
+									"       \r",
+									"/*pm.test.skip(\"Verify name = Rock and email = Rocky@gmal.com\", function () { //12th section\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(\"Rock\");\r",
+									"     pm.expect(jsonData.email).to.eql(\"Rocky@gmal.com\");\r",
+									"});*/\r",
+									"\r",
+									"\r",
+									"//printing capture request attributes\r",
+									"console.log(\"http method used \"+pm.request.method)\r",
+									"console.log(\"API URL \"+pm.request.url)\r",
+									"console.log(\"Request header \"+pm.request.headers)\r",
+									"\r",
+									"console.log(\"Request body is \")\r",
+									"console.log(pm.request.body)\r",
+									"\r",
+									"console.log(\"Request body size is \")\r",
+									"console.log(pm.request.size())\r",
+									"\r",
+									"console.log(\"API name is \"+pm.info.requestName)\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							},
+							{
+								"key": "User-Agent",
+								"value": "{{$randomUserAgent}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"{{$randomNameSuffix}} {{globalName}}\",\r\n    \"email\": \"{{globalemail}}\",\r\n    \"status\": \"active\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users/{{globalID}}",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"{{globalID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Status code is 204 No Content\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Veify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify response body is not received\", function () {\r",
+									"    pm.response.to.not.have.body();\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							},
+							{
+								"key": "User-Agent",
+								"value": "{{$randomUserAgent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users/{{globalID}}",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"{{globalID}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "response of API becomes request for another dependent API"
+		},
+		{
+			"name": "load test",
+			"item": [
+				{
+					"name": "List User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify Status code is 200 OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Veify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify response body is received\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response format is JSON\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id, name, gender, email, status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"});\r",
+									"\r",
+									"//printing capture response attributes\r",
+									"console.log(\"hello to testing world\")\r",
+									"console.log(\"response code in server is \"+pm.response.code);\r",
+									"console.log(\"response status is \"+pm.response.status);\r",
+									"console.log(\"response time is \"+pm.response.responseTime+ \"ms\");\r",
+									"\r",
+									"console.log(\"response size is \");\r",
+									"console.log(pm.response.size());\r",
+									"\r",
+									"console.log(\"resonse body is\")\r",
+									"console.log(pm.response.json())\r",
+									"\r",
+									"console.log(\"response headers is \"+pm.response.headers)\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							},
+							{
+								"key": "User-Agent",
+								"value": "{{$randomUserAgent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "we use postman built-in function to generate random data"
+		},
+		{
+			"name": "performance test",
+			"item": [
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Fixed syntax error and added missing closing parenthesis\r",
+									"pm.test(\"Verify Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response body is received\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify format is Json\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id, name, gender, email, status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Verify gender is male or female\", function () {\r",
+									"    pm.expect(pm.response.json().gender).to.be.oneOf([\"male\", \"female\"]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify gender is male or female\", function () {\r",
+									"    pm.expect(pm.response.json().status).to.be.oneOf([\"active\", \"inactive\"]);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer c787d5ba53214f37f2b1baa75cf460c03c80a9b07c973d20d5a01a91bf12fc82"
+							},
+							{
+								"key": "User-Agent",
+								"value": "{{$randomUserAgent}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"{{$randomNamePrefix}} {{$randomFirstName}}\",\r\n    \"gender\": \"{{gender}}\",\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"status\": \"{{status}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "we use postman built-in function to generate random data"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "cAccesstoken",
+			"value": ""
+		}
+	]
+}
